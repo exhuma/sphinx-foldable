@@ -1,0 +1,75 @@
+@import url("default.css");
+
+dl.class > dt,
+dl.method > dt,
+dl.classmethod > dt,
+dl.staticmethod > dt,
+dl.attribute > dt {
+    background: hsl(198, 50%, 80%);
+    border-bottom: 2px solid hsl(198, 50%, 50%);
+    padding: 0.5em 1em 0.5em 1em;
+    margin-left: -1em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+dl.exception > dt {
+    background: hsl(0, 50%, 80%);
+    border-bottom: 2px solid hsl(0, 50%, 50%);
+    padding: 0.5em 1em 0.5em 1em;
+    margin-left: -1em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+dl.attribute > dt:before {
+    content: url("images/tag_blue.png");
+    vertical-align: middle;
+}
+
+dl.classmethod > dt:before {
+    content: url("images/package.png");
+    vertical-align: middle;
+}
+
+dl.staticmethod > dt:before {
+    content: url("images/world.png");
+    vertical-align: middle;
+}
+
+dl.method > dt,
+dl.classmethod > dt,
+dl.staticmethod > dt,
+dl.attribute > dt {
+    background: hsl(198, 50%, 90%);
+    border-bottom: 2px solid hsl(198, 50%, 60%);
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    margin-left: -0.5em;
+}
+
+TH.field-name {
+    background: inherit;
+    border-right: 2px solid hsl(198, 50%, 20%);
+}
+
+TT.descclassname {
+    color: hsl(198, 50%, 40%);
+}
+
+dl.method > dd,
+dl.classmethod > dd,
+dl.staticmethod > dd,
+dl.attribute > dd {
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin: 0 0.5em 0.5em 0.5em;
+    padding: 0.5em;
+    background: hsl(198, 30%, 95%);
+
+}
