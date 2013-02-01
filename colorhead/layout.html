@@ -1,0 +1,12 @@
+{% extends "default/layout.html" %}
+
+{# {% if theme_collapsiblesidebar|tobool %} #}
+{% set script_files = script_files + ['_static/colorhead.js'] %}
+{% block footer %}
+    {{ super() }}
+    <script type="text/javascript">
+        var folder = new SphinxFolding();
+        folder.init();
+    </script>
+{% endblock%}
+{# {% endif %} #}
