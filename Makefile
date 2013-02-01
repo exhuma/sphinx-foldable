@@ -7,6 +7,13 @@
 
 PLOVR=~/work/__libs__/plovr/build/plovr.jar
 
-all:
+.PHONY: js html
+
+all: js html
+	echo done
+
+js:
 	(cd js && PLOVR=${PLOVR} make)
+
+html:
 	(cd example && make html)
