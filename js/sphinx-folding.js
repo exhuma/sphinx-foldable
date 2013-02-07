@@ -19,9 +19,11 @@ SphinxFolding = function() {
 
 SphinxFolding.prototype.init = function() {
   goog.require('goog.debug.FancyWindow');
-  var debugWindow = new goog.debug.FancyWindow('main');
-  debugWindow.setEnabled(true);
-  debugWindow.init();
+  if (goog.DEBUG) {
+    var debugWindow = new goog.debug.FancyWindow('main');
+    debugWindow.setEnabled(true);
+    debugWindow.init();
+  }
   goog.debug.Console.autoInstall();
 
   var classes = goog.dom.getElementsByTagNameAndClass('dt');
