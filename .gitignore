@@ -1,3 +1,4 @@
-env
-foldable/static/foldable.js
-example/_build
+/dev
+/env
+/foldable/static/foldable.js
+/example/_build
