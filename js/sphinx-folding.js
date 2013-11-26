@@ -13,11 +13,6 @@ goog.require('goog.ui.AnimatedZippy');
  * @constructor
  */
 SphinxFolding = function() {
-  // empty constructor
-};
-
-
-SphinxFolding.prototype.init = function() {
   goog.require('goog.debug.FancyWindow');
   if (goog.DEBUG) {
     var debugWindow = new goog.debug.FancyWindow('main');
