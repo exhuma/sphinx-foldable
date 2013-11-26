@@ -2,11 +2,10 @@ goog.provide('SphinxFolding');
 
 goog.require('goog.array');
 goog.require('goog.debug');
-goog.require('goog.debug.Logger');
 goog.require('goog.debug.Console');
+goog.require('goog.debug.Logger');
 goog.require('goog.dom');
-goog.require('goog.events');
-goog.require('goog.style');
+goog.require('goog.ui.AnimatedZippy');
 
 
 /**
@@ -30,20 +29,10 @@ SphinxFolding.prototype.init = function() {
   goog.array.forEach(classes, function(obj){
     var container = goog.dom.getNextElementSibling(obj);
     if (goog.isDefAndNotNull(container)) {
-      goog.style.showElement(container, false);
+      var zippy = new goog.ui.AnimatedZippy(obj, container, false);
+      zippy.animationDuration = 100;
     }
-    goog.events.listen(obj, goog.events.EventType.CLICK, function(evt) {
-      SphinxFolding.toggleVisibility(this);
-    });
   });
-};
-
-
-SphinxFolding.toggleVisibility = function(obj) {
-  SphinxFolding.LOG.finer("Toggling visibility of sibling of " + obj.tagName);
-  var container = goog.dom.getNextElementSibling(obj);
-  SphinxFolding.LOG.fine("Sibling is " + container);
-  goog.style.showElement(container, !goog.style.isElementShown(container));
 };
 
 
