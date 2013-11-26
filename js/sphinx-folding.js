@@ -5,6 +5,7 @@ goog.require('goog.debug');
 goog.require('goog.debug.Console');
 goog.require('goog.debug.Logger');
 goog.require('goog.dom');
+goog.require('goog.dom.classes');
 goog.require('goog.ui.AnimatedZippy');
 
 
@@ -25,12 +26,19 @@ SphinxFolding.prototype.init = function() {
   }
   goog.debug.Console.autoInstall();
 
+  var hasClass = goog.dom.classes.has;
   var defterms = goog.dom.getElementsByTagNameAndClass('dt');
   goog.array.forEach(defterms, function(defterm){
-    var container = goog.dom.getNextElementSibling(defterm);
-    if (goog.isDefAndNotNull(container)) {
-      var zippy = new goog.ui.AnimatedZippy(defterm, container, false);
-      zippy.animationDuration = 100;
+    var defList = defterm.parentNode;
+    if (hasClass(defList, 'class') ||
+        hasClass(defList, 'method') ||
+        hasClass(defList, 'exception') ||
+        hasClass(defList, 'function')) {
+      var container = goog.dom.getNextElementSibling(defterm);
+      if (goog.isDefAndNotNull(container)) {
+        var zippy = new goog.ui.AnimatedZippy(defterm, container, false);
+        zippy.animationDuration = 100;
+      }
     }
   });
 };
