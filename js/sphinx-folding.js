@@ -25,11 +25,11 @@ SphinxFolding.prototype.init = function() {
   }
   goog.debug.Console.autoInstall();
 
-  var classes = goog.dom.getElementsByTagNameAndClass('dt');
-  goog.array.forEach(classes, function(obj){
-    var container = goog.dom.getNextElementSibling(obj);
+  var defterms = goog.dom.getElementsByTagNameAndClass('dt');
+  goog.array.forEach(defterms, function(defterm){
+    var container = goog.dom.getNextElementSibling(defterm);
     if (goog.isDefAndNotNull(container)) {
-      var zippy = new goog.ui.AnimatedZippy(obj, container, false);
+      var zippy = new goog.ui.AnimatedZippy(defterm, container, false);
       zippy.animationDuration = 100;
     }
   });
