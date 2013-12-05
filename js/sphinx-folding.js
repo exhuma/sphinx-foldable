@@ -14,6 +14,16 @@ goog.require('goog.ui.AnimatedZippy');
  * @constructor
  */
 SphinxFolding = function() {
+  this.setupLogging();
+  this.collapseDefterms();
+  this.makeTargetedVisible();
+};
+
+
+/**
+ * configure the logging framework.
+ */
+SphinxFolding.prototype.setupLogging = function() {
   goog.require('goog.debug.FancyWindow');
   if (goog.DEBUG) {
     var debugWindow = new goog.debug.FancyWindow('main');
@@ -21,7 +31,14 @@ SphinxFolding = function() {
     debugWindow.init();
   }
   goog.debug.Console.autoInstall();
+};
 
+
+/**
+ * Loop through all DT elements and collapse those which contain specific class
+ * names.
+ */
+SphinxFolding.prototype.collapseDefterms = function() {
   var hasClass = goog.dom.classes.has;
   var defterms = goog.dom.getElementsByTagNameAndClass('dt');
   var self = this;
@@ -40,11 +57,6 @@ SphinxFolding = function() {
       }
     }
   });
-  var thisUri = new goog.Uri(location.href);
-  var targetedZippy = this.zippies[thisUri.getFragment()];
-  if (goog.isDefAndNotNull(targetedZippy)) {
-    this.ensureVisible(targetedZippy);
-  }
 };
 
 
@@ -58,7 +70,7 @@ SphinxFolding.prototype.ensureVisible = function(zippy) {
   var self = this;
 
   if (!goog.isDefAndNotNull(zippy)) {
-    window['console']['log']('Zippy ' + zippy + ' not found!');
+    SphinxFolding.LOG.warning('Zippy ' + zippy + ' not found!');
     return;
   }
 
@@ -72,6 +84,20 @@ SphinxFolding.prototype.ensureVisible = function(zippy) {
     }
   });
 
+};
+
+
+/**
+ * If the page is accessed with an URI fragment, make sure that element is
+ * visible by opening that definition list and all definition lists which may
+ * contain it.
+ */
+SphinxFolding.prototype.makeTargetedVisible = function() {
+  var thisUri = new goog.Uri(location.href);
+  var targetedZippy = this.zippies[thisUri.getFragment()];
+  if (goog.isDefAndNotNull(targetedZippy)) {
+    this.ensureVisible(targetedZippy);
+  }
 };
 
 
