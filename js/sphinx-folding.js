@@ -15,7 +15,11 @@ goog.require('goog.ui.AnimatedZippy');
  */
 SphinxFolding = function() {
   this.setupLogging();
-  this.collapseDefterms();
+  this.collapseDefterms([
+      'class',
+      'method',
+      'exception',
+      'function']);
   this.makeTargetedVisible();
 };
 
@@ -37,18 +41,19 @@ SphinxFolding.prototype.setupLogging = function() {
 /**
  * Loop through all DT elements and collapse those which contain specific class
  * names.
+ *
+ * @param {Array.<string>} collapsedClasses A list of classes. If a DT element
+ *    contains any of these classes it will become collapsible.
  */
-SphinxFolding.prototype.collapseDefterms = function() {
+SphinxFolding.prototype.collapseDefterms = function(collapsedClasses) {
   var hasClass = goog.dom.classes.has;
   var defterms = goog.dom.getElementsByTagNameAndClass('dt');
   var self = this;
   this.zippies = {};
   goog.array.forEach(defterms, function(defterm){
     var defList = defterm.parentNode;
-    if (hasClass(defList, 'class') ||
-        hasClass(defList, 'method') ||
-        hasClass(defList, 'exception') ||
-        hasClass(defList, 'function')) {
+    if (goog.array.some(collapsedClasses, function(el) {
+          return hasClass(defList, el)})) {
       var container = goog.dom.getNextElementSibling(defterm);
       if (goog.isDefAndNotNull(container) && goog.isDefAndNotNull(defterm.id)) {
         var zippy = new goog.ui.AnimatedZippy(defterm, container, false);
