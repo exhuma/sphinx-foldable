@@ -50,7 +50,7 @@ SphinxFolding.prototype.collapseDefterms = function(collapsedClasses) {
   var defterms = goog.dom.getElementsByTagNameAndClass('dt');
   var self = this;
   this.zippies = {};
-  goog.array.forEach(defterms, function(defterm){
+  goog.array.forEach(defterms, function(defterm) {
     var defList = defterm.parentNode;
     if (goog.array.some(collapsedClasses, function(el) {
           return hasClass(defList, el)})) {
@@ -83,7 +83,7 @@ SphinxFolding.prototype.ensureVisible = function(zippy) {
   goog.array.forEach(deflists, function(element) {
     if (goog.dom.contains(element, zippy.elHeader_)) {
       var firstElement = goog.dom.getFirstElementChild(element);
-      if (self.zippies.hasOwnProperty(firstElement.id)){
+      if (self.zippies.hasOwnProperty(firstElement.id)) {
         self.zippies[firstElement.id].setExpanded(true);
       }
     }
