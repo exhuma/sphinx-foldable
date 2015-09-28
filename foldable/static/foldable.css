@@ -80,3 +80,20 @@ dt:target, .highlighted {
    background-color: #fbe54e !important;
 }
 
+
+.figure {
+    width: 300px;
+    border: 1px solid black;
+    padding: 1em;
+    background: #fff;
+    margin: 0;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+.figure .caption {
+    padding-top: 1em;
+    border-top: 1px solid #999;
+    font-size: small;
+    color: #333;
+}
